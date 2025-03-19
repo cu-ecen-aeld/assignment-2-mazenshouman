@@ -16,7 +16,7 @@ if [ ! -d $filesdir ]; then
 fi
 
 
-numberOfFiles=$(ls -l $filesdir | wc -l)
+numberOfFiles=$(ls $filesdir | wc -l)
 
 numberOfMatchingLines=$(grep -rl $searchstr $filesdir | wc -l)
 
