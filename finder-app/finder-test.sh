@@ -5,6 +5,13 @@
 set -e
 set -u
 
+# Clean any previous build artifacts.
+if [ -e "writer" ] || [ -e "writer.c.d" ] || [ -e "writer.c.o" ];then
+	make clean
+fi
+
+make
+
 NUMFILES=10
 WRITESTR=AELD_IS_FUN
 WRITEDIR=/tmp/aeld-data
@@ -54,7 +61,7 @@ fi
 
 for i in $( seq 1 $NUMFILES)
 do
-	./writer.sh "$WRITEDIR/${username}$i.txt" "$WRITESTR"
+	../build/writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
